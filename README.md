@@ -22,13 +22,17 @@ Banco de dados
 O framework para mapeamento de objeto relacional utilizado é o hibernate, onde facilita a criação das tabelas e todo mapeamento de chaves e restrições criadas no sistema. O banco de dados utilizado é o Postgres que é um banco relacional open source.
 
 Testes de integração
+
 É comum utilizar selenium para criação de testes de integração no sistema. Para esse projeto, foi utilizado uma extensão ou plug-in do navegador Chrome chamada Sideex que tem basicamente as mesmas funcionalidades do selenium, porém a configuração e a utilização é bem simples.
 
 Controle de versão
+
 No cenário atual existem duas ferramentas que geralmente são utilizadas para o controle de versionamento, são elas: SVN tortoise e o GitHub. No caso do projeto é utilizado o GitHub para armazenamento do código e possíveis versionamentos.
 
 Servidor de Aplicação
+
 O servidor de aplicação utilizado no projeto é o tomcat 8, mas também foi realizado testes no jboss wildfly 9. Para o deploy da aplicação é executado o servidor de aplicação, onde é criar um arquivo .war que disponibiliza a aplicação em um endereço pré definido. No caso de endereço local geralmente se usa http://localhost:8080.
 
 Configurações de desenvolvimento
+
 O Java instalado para executar o sistema é o Java 7. A IDE de desenvolvimento é o eclipse MARS, e também testado no intellij Idea Community.
