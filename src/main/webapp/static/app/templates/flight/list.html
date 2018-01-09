@@ -1,0 +1,165 @@
+<div class="row-fluid">
+	<div class="col-md-12">
+		<div class="page-header">
+			<div class="col-md-1"></div>
+			<h1 class="pull-left col-md-4">Flight listing</h1>
+			<div class="pull-right">
+				<a href="#/flight/new" class="btn btn-lg btn-link"
+					has-permission="ADMIN"> <i class="glyphicon glyphicon-plus"></i>
+					New Flight
+				</a>
+
+				<button type="button" class="btn btn-link btn-lg"
+					ng-click="goBack()">
+					<span class="text-muted"> <i
+						class="glyphicon glyphicon-arrow-left"></i> Back
+					</span>
+				</button>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="col-md-12">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<div class="form-inline">
+					<div class="form-group" style="width: 400px">
+						<div class="input-group">
+							<span class="input-group-addon"> <i
+								class="glyphicon glyphicon-search"></i>
+							</span> <input class="form-control" type="text" ng-model="searchText" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th class="small">Name</th>
+						<th class="small">Airplane</th>
+						<th class="small">Origin</th>
+						<th class="small">Destination</th>
+						<th class="small">Pilot</th>
+						<th class="small">Date Flight</th>
+						<th class="small">Status</th>
+						<th class="small">Enabled</th>
+						<th class="small" width="110">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr ng-hide="flightList">
+						<td class="text-center" colspan="9">There are no flights
+							registered yet.</td>
+					</tr>
+
+					<tr ng-repeat="flight in flightList | filter:searchText">
+						<td class="small">{{flight.name}}</td>
+						<td class="small">{{flight.airplane}}</td>
+						<td class="small">{{flight.origin}}</td>
+						<td class="small">{{flight.destination | i18n}}</td>
+						<td class="small">{{flight.pilot}}</td>
+						<td class="small">{{flight.date}}</td>
+						<td class="small">{{flight.status}}</td>
+						<td class="small"><span class="label"
+							ng-class="{ 'label-danger': !flight.enabled, 'label-success': flight.enabled }">
+								{{ flight.enabled | i18n }} </span></td>
+						<td class="small">
+							<div class="btn-group btn-group-xs">
+								<a class="btn btn-default" href="#/flight/{{flight.id}}"> <i
+									class="glyphicon glyphicon-edit"></i> Edit
+								</a>
+
+								<button type="button" class="btn btn-default dropdown-toggle">
+									<span class="caret"></span>
+								</button>
+
+								<ul class="dropdown-menu" role="menu">
+									<li><a ng-click="delete(flight)"> <i
+											class="glyphicon glyphicon-remove"></i> Remove
+									</a></li>
+									<li><a ng-click="change(flight)" data-toggle="modal"
+										data-target="#myModal"> <i
+											class="glyphicon glyphicon-eye-open"></i> View
+									</a></li>
+								</ul>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+			<div class="panel-footer">
+				<div class="pull-left">
+					<pagination previous-text="Anterior" next-text="Próxima"
+						max-size="10" boundary-links="true" rotate="false"
+						num-pages="numPages" total-items="usersList.totalItems"
+						items-per-page="usersList.itemsPerPage"
+						page="usersList.currentPage"
+						on-select-page="updatePage(page,usersList.itemsPerPage)"></pagination>
+				</div>
+
+				<div class="btn-group btn-group-sm pull-right">
+					<button class="btn btn-default"
+						ng-class="{ 'active': usersList.itemsPerPage == 10 }"
+						ng-click="updatePage(usersList.currentPage, 10)">10</button>
+					<button class="btn btn-default"
+						ng-class="{ 'active': usersList.itemsPerPage == 20 }"
+						ng-click="updatePage(usersList.currentPage, 20)">20</button>
+					<button class="btn btn-default"
+						ng-class="{ 'active': usersList.itemsPerPage == 50 }"
+						ng-click="updatePage(usersList.currentPage, 50)">50</button>
+					<button class="btn btn-default"
+						ng-class="{ 'active': usersList.itemsPerPage == 100 }"
+						ng-click="updatePage(usersList.currentPage, 100)">100</button>
+				</div>
+
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" style="margin-top: 150px;" id="myModal"
+	role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">View Flight</h4>
+			</div>
+			<div class="modal-body">
+				<table class="table table-bordered">
+					<tr>
+						<td>Description</td>
+						<td>{{flightChange.name}}</td>
+					</tr>
+					<tr>
+						<td>Origin</td>
+						<td>{{flightChange.origin}}</td>
+					</tr>
+					<tr>
+						<td>Destination</td>
+						<td>{{flightChange.destination}}</td>
+					</tr>
+					<tr>
+						<td>Date</td>
+						<td>{{flightChange.date}}</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

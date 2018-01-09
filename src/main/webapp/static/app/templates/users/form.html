@@ -1,0 +1,93 @@
+<div class="row-fluid">
+    <div class="col-md-12">
+        <div class="page-header">
+        	<div class="col-md-1"></div>
+            <h1 class="pull-left col-md-4">User registration</h1>
+
+            <div class="pull-right">
+                <button type="button" class="btn btn-link btn-lg" ng-click="goBack()">
+                    <span class="text-muted">
+                        <i class="glyphicon glyphicon-arrow-left"></i>
+                        Back
+                    </span>
+                </button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<form name="userForm" fts-form="validationErrors" ng-submit="save()" novalidate="novalidate">
+    <div class="row-fluid">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Login Information
+                </div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="control-label">Login:*</label>
+                        <input  class="form-control" ng-readonly="user.id" ng-required="true" ng-model="user.username" type="text"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Password:*</label>
+                        <input class="form-control" ng-required="!user.id" ng-minlength="6" ng-model="user.password" type="password"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Password Confirmation:*</label>
+                        <input class="form-control" ng-required="!user.id" ng-equal-to="user.password" ng-model="confirmPassword" type="password"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    User information - information marked with * is mandatory and must be completed
+                </div>
+                <div class="panel-body">
+                    <div class="row-fluid">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Name:*</label>
+                                <input ng-required="true" class="form-control" ng-model="user.name" type="text"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Mail:*</label>
+                                <input ng-required="true" class="form-control" ng-model="user.email" type="email"/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Group:*</label>
+                                <select ng-model="user.group" ng-required="true" class="form-control">
+                                    <option ng-repeat="item in userGroups" value="{{item}}" ng-selected="item == user.group">{{item | i18n}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phone:*</label>
+                                <input class="form-control" ng-required="true" ng-model="user.phoneNumber" type="text"/>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="col-md-12">
+            <div class="well well-sm text-right">
+                <button type="submit" value="Salvar" class="btn btn-primary">Salvar</button>
+                <button type="button" ng-click="goBack()" class="btn btn-default">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</form>

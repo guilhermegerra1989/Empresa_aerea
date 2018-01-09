@@ -1,0 +1,128 @@
+@CHARSET "UTF-8";
+body {
+    font-family: "Droid Sans", sans-serif;
+    padding-top: 50px;
+    overflow-y: scroll;
+}
+
+#logo {
+    height: 140px;
+    width: 252px;
+    display: inline-block;
+}
+
+#login-overlay {
+    padding-top: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #D9E3EB;
+}
+
+#view-container {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+}
+
+.navbar-brand img {
+    margin-top: -9px;
+    margin-right: 10px;
+}
+
+.logo {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.page-header {
+    margin-top: 0;
+}
+
+.page-header h1 {
+    font-size: 25px;
+}
+
+.page-header > div > .btn,
+.page-header > div > .btn-group {
+    margin-top: 11px;
+}
+
+.rowLabel {
+    text-align: right;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.pagination {
+    margin: 0;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-group .form-control-feedback {
+    display: none;
+}
+
+.form-group.has-feedback .form-control-feedback {
+    z-index: 10;
+    display: block;
+}
+
+.form-group.has-error .popover {
+    background-color: #d9534f;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.form-group.has-error .popover .arrow {
+    border-top-color: #d9534f;
+}
+
+.no-margins {
+    margin: 0;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+div.fileinputs {
+    position: relative;
+}
+
+div.fakefile {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+
+div.fileinputs input.file {
+    position: relative;
+    text-align: right;
+    -moz-opacity:0 ;
+    filter:alpha(opacity: 0);
+    opacity: 0;
+    z-index: 2;
+    height: 10px;
+}
+

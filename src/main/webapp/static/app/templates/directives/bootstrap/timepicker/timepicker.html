@@ -1,0 +1,16 @@
+<table ng-class="{'has-error': invalidHours || invalidMinutes}">
+    <tr>
+        <td>
+            <input type="text" ng-model="hours" ng-change="updateHours()" class="form-control text-center"  ng-mousewheel="incrementHours()" ng-readonly="readonlyInput" maxlength="2">
+        </td>
+        <td>:</td>
+        <td>
+            <input type="text" ng-model="minutes" ng-change="updateMinutes()"  class="form-control text-center" ng-readonly="readonlyInput" maxlength="2" style="display: inline-block">
+        </td>
+        <td ng-show="showMeridian" >
+            <button type="button" class="btn btn-default text-center" ng-click="toggleMeridian()">
+                {{meridian}}
+            </button>
+        </td>
+    </tr>
+</table>

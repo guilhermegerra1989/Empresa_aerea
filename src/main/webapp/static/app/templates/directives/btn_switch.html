@@ -1,0 +1,9 @@
+<div class="btn-group btn-switch btn-group-justified">
+    <div class="btn-group">
+        <button type="button" class="btn btn-sm" ng-class="{ 'btn-success': getValue() }" ng-click="setValue(true)">Ativo</button>
+    </div>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-sm" ng-class="{ 'btn-danger': !getValue() }" ng-click="setValue(false)">Inativo</button>
+    </div>
+</div>

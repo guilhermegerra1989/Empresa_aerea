@@ -1,0 +1,111 @@
+<div class="row-fluid">
+    <div class="col-md-12">
+        <div class="page-header">
+        	<div class="col-md-1"></div>
+            <h1 class="pull-left col-md-4">User List</h1>
+            <div class="pull-right">
+                <a href="#/users/new" class="btn btn-lg btn-link" has-permission="ADMIN">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    New User
+                </a>
+
+                <button type="button" class="btn btn-link btn-lg" ng-click="goBack()">
+                    <span class="text-muted">
+                        <i class="glyphicon glyphicon-arrow-left"></i>
+                        Back
+                    </span>
+                </button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="form-inline">
+                    <div class="form-group" style="width: 400px">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </span>
+                            <input class="form-control" type="text" ng-model="searchText"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th class="small">Name</th>
+                    <th class="small">Login</th>
+                    <th class="small">Group</th>
+                    <th class="small">Mail</th>
+                    <th class="small">Phone</th>
+                    <th class="small">Status</th>
+                    <th class="small" width="110">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-hide="usersList">
+                    <td class="text-center" colspan="9">There are no registered users.</td>
+                </tr>
+
+                <tr ng-repeat="user in usersList | filter:searchText">
+                    <td class="small">{{user.name}}</td>
+                    <td class="small">{{user.username}}</td>
+                    <td class="small">{{user.group | i18n}}</td>
+                    <td class="small">{{user.email}}</td>
+                    <td class="small">{{user.phoneNumber}}</td>
+                    <td class="small">
+                        <span class="label" ng-class="{ 'label-danger': !user.enabled, 'label-success': user.enabled }">
+                            {{ 'user_enabled_' + user.enabled | i18n }}
+                        </span>
+                    </td>
+                    <td class="small">
+                        <div class="btn-group btn-group-xs">
+                            <a class="btn btn-default" href="#/users/{{user.id}}">
+                                <i class="glyphicon glyphicon-edit"></i> Edit
+                            </a>
+
+                            <button type="button" class="btn btn-default dropdown-toggle">
+                                <span class="caret"></span>
+                            </button>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a ng-click="delete(user)">
+                                        <i class="glyphicon glyphicon-remove"></i> Remove
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="panel-footer">
+                <div class="pull-left">
+                    <pagination previous-text="Anterior" next-text="Próxima"  max-size="10" boundary-links="true" rotate="false" num-pages="numPages"  total-items="usersList.totalItems" items-per-page="usersList.itemsPerPage" page="usersList.currentPage" on-select-page="updatePage(page,usersList.itemsPerPage)"></pagination>
+                </div>
+
+                <div class="btn-group btn-group-sm pull-right">
+                    <button class="btn btn-default" ng-class="{ 'active': usersList.itemsPerPage == 10 }" ng-click="updatePage(usersList.currentPage, 10)">10</button>
+                    <button class="btn btn-default" ng-class="{ 'active': usersList.itemsPerPage == 20 }" ng-click="updatePage(usersList.currentPage, 20)">20</button>
+                    <button class="btn btn-default" ng-class="{ 'active': usersList.itemsPerPage == 50 }" ng-click="updatePage(usersList.currentPage, 50)">50</button>
+                    <button class="btn btn-default" ng-class="{ 'active': usersList.itemsPerPage == 100 }" ng-click="updatePage(usersList.currentPage, 100)">100</button>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
