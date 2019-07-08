@@ -1,4 +1,4 @@
-# Empresa_Aerea
+# Empresa_Aerea (Angular.js)
 Projeto de uma empresa aérea para controle de voo
 
 Plano de desenvolvimento
